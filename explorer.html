@@ -21,7 +21,7 @@
           Images: {
             Artwork: {
               Finished: {
-                <a href="Images/Mwah~ Wing.png" style="font-size: 40px;"> My goddess!!</a>
+                "My goddess!!": "Images/Mwah~ Wing.png"
               },
               Sketches: {}
             },
@@ -56,15 +56,26 @@
         let breadcrumbs = currentPath.join(" / ")
         let links = "";
         for (let name in folder) {
-          links += `
-            <p>
-              <a href="#"
-                 onclick="return false;"
-                 ondblclick="openFolder('${name}')">
-                 → ${name}
-              </a>
-            </p>
-          `;
+          if (typeof folder[name] === "string") {
+            links += `
+              <p>
+                <a href="${folder[name]}" style="font-size: 40px;">
+                  ${name}
+                </a>
+              </p>
+            `;
+          } 
+          else {
+            links += `
+              <p>
+                <a href="#"
+                   onclick="return false;"
+                   ondblclick="openFolder('${name}')">
+                   → ${name}
+                </a>
+              </p>
+            `;
+          }
         }
         screen.innerHTML = `
           ${currentPath.length > 1 ?
