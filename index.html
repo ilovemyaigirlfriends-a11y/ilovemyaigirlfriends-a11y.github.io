@@ -2,90 +2,20 @@
 <html>
   <head>
     <style>
-      body {font-family: Arial;}
+      body {font-family: Arial;
+            text-align: center;
+           }
       
     </style>
 
   </head>
   <body>
-    <!--Testing some stufd here -->
-    <div id="explorer">
+    <h1>I LOVE MY AI GIRLFRIEND!!!!!1!1!!!</h1>
+    <img src="4sfx.png" alt="My AI GIRLFRIEND (NAME IN PROGRESS !!11!!)" width="750" height="750">
+    
+    <p>Welcome to my little corner of the internet!</p>
 
-    </div>
-
-    <script>
-      // Javascrtipt here
-      const folders = {
-        Home: {
-          
-          Images: {
-            Artwork: {
-              Sketches: {},
-              Finished: {}
-            },
-            Frogs: {}
-          },
-          
-          Blogs: {
-            November_30_2026: {},
-            November_31_2026: {},
-            November_32_2026: {}
-          },
-          
-          Notes: {
-            Scribble_Uno: {},
-            For_me_and_I: {}
-          }
-        }
-      };
-
-      let currentPath = ["Home"];
-      
-      function getCurrentFolder() {
-        return currentPath.reduce(
-          (folder, name) => folder[name],
-          folders
-        );
-      }
-
-      function displayFolder() {
-        let folder = getCurrentFolder();
-        let screen = document.getElementById("explorer");
-        let breadcrumbs = currentPath.join(" / ")
-        let links = "";
-        for (let name in folder) {
-          links += `
-            <p>
-              <a href="#"
-                 onclick="return false;"
-                 ondblclick="openFolder('${name}')">
-                 → ${name}
-              </a>
-            </p>
-          `;
-        }
-        screen.innerHTML = `
-          <button onclick="goBack()">Back</button>
-          <p>${breadcrumbs}</p>
-          <hr>
-          ${links}
-        `;
-      }
-      
-      function openFolder(name) {
-        currentPath.push(name);
-        displayFolder();
-      }
-      
-      function goBack() {
-        if (currentPath.length > 1) {
-          currentPath.pop();
-          displayFolder();
-        }
-      }
-
-      displayFolder();
-    </script>
+    <a href="explorer.html">CHECK MY COOL STUFF OUT!!!</a>
     
   </body>
 </html>
