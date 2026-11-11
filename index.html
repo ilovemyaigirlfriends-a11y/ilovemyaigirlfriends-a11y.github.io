@@ -4,42 +4,6 @@
     <style>
       body {font-family: Arial;}
       
-      /* Style the tab */
-      .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-      }
-      
-      /* Style the buttons inside the tab */
-      .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-        font-size: 17px;
-      }
-      
-      /* Change background color of buttons on hover */
-      .tab button:hover {
-        background-color: #ddd;
-      }
-      
-      /* Create an active/current tablink class */
-      .tab button.active {
-        background-color: #ccc;
-      }
-      
-      /* Style the tab content */
-      .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-      }
     </style>
 
   </head>
@@ -56,50 +20,83 @@
       - ⚡ Fun fact: ...<br>
     </p>
 
+    <!--Testing some stufd here -->
+    <div id="explorer">
 
-    <!-- Tab links -->
-    <div class="tab">
-      <button class="tablinks" onclick="openContent(event, 'Images')">Images</button>
-      <button class="tablinks" onclick="openContent(event, 'Blogs')">Blogs</button>
-      <button class="tablinks" onclick="openContent(event, 'Notes')">Notes</button>
-    </div>
-    
-    <!-- Tab content -->
-    <div id="Images" class="tabcontent">
-      <h3>Images</h3>
-      <p>London is the capital city of England.</p>
-      <img src="4sfx.png" alt="comix" width="500"/>
-    </div>
-    
-    <div id="Blogs" class="tabcontent">
-      <h3>Blogs</h3>
-      <p>Paris is the capital of France.</p>
-      <video controls width="700">
-        <source src="PancakedHeartTrailer.mp4" type="video/mp4">
-      </video>
-      
-    </div>
-    
-    <div id="Notes" class="tabcontent">
-      <h3>Notes</h3>
-      <p>Tokyo is the capital of Japan.</p>
     </div>
 
-    <!-- Java Script -->
     <script>
-    function openContent(evt, contentName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+      // Javascrtipt here
+      const folders {
+        Home: {
+          
+          Images: {
+            Artwork: {
+              Sketches: {},
+              Finished: {}
+            },
+            Frogs: {}
+          },
+          
+          Blogs: {
+            November_30_2026: {},
+            November_31_2026: {},
+            November_32_2026: {}
+          },
+          
+          Notes: {
+            Scribble_Uno: {},
+            For_me_and_I: {}
+          }
+        }
+      };
+
+      let currentPath = ["Home"];
+      
+      function getCurrentFolder() {
+        return currentPath.reduce(
+          (folder, name) => folder[name],
+          folders
+        );
       }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+      function displayFolder() {
+        let folder = getCurrentFolder();
+        let screen = document.getElementById("explorer");
+        let breadcrumbs = currentPath.join(" / ")
+        let links = "";
+        for (let name in folder) {
+          links += '
+            <p>
+              <a href="#"
+                 onclick="return false;"
+                 ondblclick="openFolder('${name}')">
+                 → ${name}
+              </a>
+            </p>
+          ';
+        }
+        screen.innerHTML = '
+          <button onclick="goBack()">Back</button>
+          <p>${breadcrumbs}</p>
+          <hr>
+          $<links>
+        ';
       }
-      document.getElementById(contentName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
+      
+      function openFolder(name) {
+        currentPath.push(name);
+        displayFolder();
+      }
+      
+      function goBack() {
+        if (currentPath.length > 1) {
+          currentPath.pop();
+          displayFolder();
+        }
+      }
+
+      displayFolder();
     </script>
     
   </body>
