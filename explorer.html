@@ -20,8 +20,10 @@
           
           Images: {
             Artwork: {
-              Sketches: {},
-              Finished: {}
+              Finished: {
+                <a href="Images/Mwah~ Wing.png" style="font-size: 40px;"> My goddess!!</a>
+              },
+              Sketches: {}
             },
             Frogs: {}
           },
@@ -65,7 +67,9 @@
           `;
         }
         screen.innerHTML = `
-          <button onclick="goBack()">Back</button>
+          ${currentPath.length > 1 ?
+            '<button onclick="goBack()">Back</button>'
+            : ''}
           <p>${breadcrumbs}</p>
           <hr>
           ${links}
