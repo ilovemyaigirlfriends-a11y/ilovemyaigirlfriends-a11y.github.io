@@ -27,7 +27,7 @@
 
     <script>
       // Javascrtipt here
-      const folders {
+      const folders = {
         Home: {
           
           Images: {
@@ -66,7 +66,7 @@
         let breadcrumbs = currentPath.join(" / ")
         let links = "";
         for (let name in folder) {
-          links += '
+          links += `
             <p>
               <a href="#"
                  onclick="return false;"
@@ -74,14 +74,14 @@
                  → ${name}
               </a>
             </p>
-          ';
+          `;
         }
-        screen.innerHTML = '
+        screen.innerHTML = `
           <button onclick="goBack()">Back</button>
           <p>${breadcrumbs}</p>
           <hr>
-          $<links>
-        ';
+          ${links}
+        `;
       }
       
       function openFolder(name) {
