@@ -14,8 +14,78 @@
   <div id="explorer"></div>
 
   <script>
-    // 
-  </script>
+      // Javascrtipt here
+      const folders = {
+        Home: {
+          
+          Images: {
+            Artwork: {
+              Sketches: {},
+              Finished: {}
+            },
+            Frogs: {}
+          },
+          
+          Blogs: {
+            November_30_2026: {},
+            November_31_2026: {},
+            November_32_2026: {}
+          },
+          
+          Notes: {
+            Scribble_Uno: {},
+            For_me_and_I: {}
+          }
+        }
+      };
+
+      let currentPath = ["Home"];
+      
+      function getCurrentFolder() {
+        return currentPath.reduce(
+          (folder, name) => folder[name],
+          folders
+        );
+      }
+
+      function displayFolder() {
+        let folder = getCurrentFolder();
+        let screen = document.getElementById("explorer");
+        let breadcrumbs = currentPath.join(" / ")
+        let links = "";
+        for (let name in folder) {
+          links += `
+            <p>
+              <a href="#"
+                 onclick="return false;"
+                 ondblclick="openFolder('${name}')">
+                 → ${name}
+              </a>
+            </p>
+          `;
+        }
+        screen.innerHTML = `
+          <button onclick="goBack()">Back</button>
+          <p>${breadcrumbs}</p>
+          <hr>
+          ${links}
+        `;
+      }
+      
+      function openFolder(name) {
+        currentPath.push(name);
+        displayFolder();
+      }
+      
+      function goBack() {
+        if (currentPath.length > 1) {
+          currentPath.pop();
+          displayFolder();
+        }
+      }
+
+      displayFolder();
+    </script>
 
 </body>
 </html>
