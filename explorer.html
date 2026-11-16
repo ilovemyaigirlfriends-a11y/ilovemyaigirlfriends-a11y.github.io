@@ -48,7 +48,15 @@
           },
           
           Notes: {
-            Scribble_Uno: {},
+            Hello_World: {
+              content: `
+                Hello, I am testing this website! I will be putting very valuable information!
+  
+                Oh wait, I don't think anyone can see this on the main page.
+  
+                Oops.
+              `
+            },
             For_me_and_I: {}
           }
         }
@@ -68,6 +76,13 @@
         let screen = document.getElementById("explorer");
         let breadcrumbs = currentPath.join(" / ")
         let links = "";
+        if (folder.content) {
+          links += `
+            <p style="white-space: pre-line;">
+              ${folder.content}
+            </p>
+          `;
+        }
         for (let name in folder) {
           if (typeof folder[name] === "string") {
             links += `
