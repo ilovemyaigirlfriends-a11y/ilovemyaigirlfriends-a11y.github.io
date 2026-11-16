@@ -49,7 +49,7 @@
           
           Notes: {
             Hello_World: {
-              content: `
+              `
                 Hello, I am testing this website! I will be putting very valuable information!
   
                 Oh wait, I don't think anyone can see this on the main page.
@@ -76,13 +76,6 @@
         let screen = document.getElementById("explorer");
         let breadcrumbs = currentPath.join(" / ")
         let links = "";
-        if (folder.content) {
-          links += `
-            <p style="white-space: pre-line;">
-              ${folder.content}
-            </p>
-          `;
-        }
         for (let name in folder) {
           if (typeof folder[name] === "string") {
             links += `
